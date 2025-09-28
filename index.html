@@ -24,18 +24,30 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
   <body>
     <div id="root"></div>
     <script>
-      // WARNING: It is strongly recommended to use a proper build process and environment variables for API keys.
-      // Do not expose your API key in client-side code in a real application.
-      window.process = {
-        env: {
-          API_KEY: "AIzaSyC-RQrO4Qqbrj-mmCmgDiA8WTlTAcJyv_A"
+      // IMPORTANT: Replace with your new, restricted API key.
+      // This key should have Website restrictions set in your Google Cloud Console
+      // to only allow your Vercel domain (e.g., your-project.vercel.app/*).
+      const apiKey = "AIzaSyC-RQrO4Qqbrj-mmCmgDiA8WTlTAcJyv_A"; // <-- PASTE YOUR NEW KEY HERE
+
+      if (apiKey === "YOUR_NEW_RESTRICTED_API_KEY" || apiKey === "") {
+        const root = document.getElementById('root');
+        if (root) {
+            root.innerHTML = `<div style="font-family: sans-serif; padding: 2rem; text-align: center; color: #b91c1c; background-color: #fee2e2; border: 1px solid #fecaca; border-radius: 0.5rem; margin: 2rem;">
+              <h2 style="font-size: 1.5rem; font-weight: bold;">Configuration Error</h2>
+              <p style="margin-top: 0.5rem;">Please update the API key placeholder in <strong>index.html</strong> to run the application.</p>
+            </div>`
         }
-      };
+      } else {
+        window.process = {
+          env: {
+            API_KEY: apiKey
+          }
+        };
+      }
     </script>
     <script type="module" src="/index.tsx"></script>
   </body>
